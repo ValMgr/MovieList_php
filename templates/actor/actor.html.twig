@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<a href="/actor">Retour</a>
+
+{% for person in actor %}
+        <h1>Actor: {{person.name}}</h1>
+        <h2>Profession: {{person.known_for_department}}</h2>
+
+
+        <img src="{{profil_url}}{{person.profile_path}}" alt="" width="50px">
+{% endfor %}
+
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ActorController!
+{% endblock %}
+
+{% block body %}
+	<style>
+
+	</style>
+
+	<div class="search-wrapper">
+
+		<form action="{{ url("actor-search") }}">
+			<input type="search" name="q" placeholder="Search">
+			<input type="submit" value="Go">
+		</form>
+
+	</div>
+{% endblock %}

@@ -3,11 +3,15 @@
 {% block body %}
 
 <a href="/">Retour</a>
-<h1>Movie: {{movie.title}}</h1>
-<h2>Release date : {{movie.release_date}}</h2>
 
-<p>Overview: {{movie.overview}}</p>
+{% for film in movie %}
+        <h1>Movie: {{film.title}}</h1>
+        <h2>Release date : {{film.release_date}}</h2>
 
-<img src="{{poster_url}}{{movie.poster_path}}" alt="">
+        <p>Overview: {{film.overview}}</p>
+
+        <img src="{{poster_url}}{{film.poster_path}}" alt="" width="50px">
+{% endfor %}
+
 
 {% endblock %}
