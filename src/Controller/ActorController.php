@@ -9,7 +9,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 
-class MovieController extends AbstractController
+class ActorController extends AbstractController
 {
 
     private $client;
@@ -19,36 +19,35 @@ class MovieController extends AbstractController
     }
 
     private $API_URL = "https://api.themoviedb.org/3";
-    private $SLUG = "/search/movie";
-    // private $SLUG = "/search/person";
+    private $SLUG = "/search/person";
     private $API_KEY = '5ebe0843b2e373ffa159f5683b21b7de';
 
     /**
-     * @Route("/", name="movie")
+     * @Route("/actor", name="actor")
      */
     public function index(): Response
     {
-        return $this->render('movie/index.html.twig', [
-            'controller_name' => 'MovieController',
+        return $this->render('actor/index.html.twig', [
+            'controller_name' => 'ActorController',
         ]);
     }
 
     /**
-     * @Route("/search", name="search")
+     * @Route("/actor/search", name="actor-search")
      */
     public function result(RequestStack $requestStack): Response
     {
         $rq = $requestStack->getMainRequest();
-        $movies = $this->getMovie($rq->query->get('q'))['results'];
-        // dd($movies);
-        return $this->render('movie/movie.html.twig', [
-            'controller_name' => 'MovieController',
-            'movie' => $movies,
-            'poster_url' => "https://www.themoviedb.org/t/p/w1280"
+        $actor = $this->getActor($rq->query->get('q'))['results'];
+        // dd($actor);
+        return $this->render('actor/actor.html.twig', [
+            'controller_name' => 'ActorController',
+            'actor' => $actor,
+            'profil_url' => "https://www.themoviedb.org/t/p/w1280"
         ]);
     }
 
-    private function getMovie($q){
+    private function getActor($q){
         $response = $this->client->request(
             'GET',
             $this->API_URL . $this->SLUG . '?api_key=' . $this->API_KEY . '&query=' . $q
