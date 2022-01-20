@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<a href="/">Retour</a>
+<h1>Movie: {{movie.title}}</h1>
+<h2>Release date : {{movie.release_date}}</h2>
+
+<p>Overview: {{movie.overview}}</p>
+
+<img src="{{poster_url}}{{movie.poster_path}}" alt="">
+
+{% endblock %}

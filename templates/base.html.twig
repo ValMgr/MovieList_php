@@ -12,12 +12,17 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+        <header>
+            <h1>IMDB</h1>
+
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>
