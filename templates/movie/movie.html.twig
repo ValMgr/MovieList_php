@@ -2,16 +2,14 @@
 
 {% block body %}
 
-<a href="/">Retour</a>
+<a href="{{ url("form") }}">Retour</a>
 
-{% for film in movie %}
-        <h1>Movie: {{film.title}}</h1>
-        <h2>Release date : {{film.release_date}}</h2>
+<h1>Movie: {{movie.title}}</h1>
+<h2>Release date : {{movie.release_date}}</h2>
 
-        <p>Overview: {{film.overview}}</p>
+<p>Overview: {{movie.overview}}</p>
 
-        <img src="{{poster_url}}{{film.poster_path}}" alt="" width="50px">
-{% endfor %}
+<img src="{{poster_url}}{{movie.poster_path}}" alt="" width="50px">
 
 
 {% endblock %}

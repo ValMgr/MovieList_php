@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<a href="{{ url("form") }}">Retour</a>
+
+{% for movie in movies %}
+        <h1>Movie: {{movie.title}}</h1>
+        <h2>Release date : {{movie.release_date}}</h2>
+
+        <p>Overview: {{movie.overview}}</p>
+        <a href="{{ url("movie", {id: movie.id}) }}">Voir plus</a>
+
+        <img src="{{poster_url}}{{movie.poster_path}}" alt="" width="50px">
+{% endfor %}
+
+
+{% endblock %}

@@ -18,11 +18,20 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+    <style>
+        header{
+            box-shadow: 2px 0 12px #000;
+        }
+    </style>
     <body>
-        <header>
-            <h1>IMDB</h1>
 
+        <header class="d-flex justify-content-between p-2">
+            <h1>ThemovieDB</h1>
+            <div></div>
         </header>
-        {% block body %}{% endblock %}
+
+        <main class="container">
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>
