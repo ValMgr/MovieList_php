@@ -2,17 +2,22 @@
 
 {% block body %}
 
-<a href="{{ url("form") }}">Retour</a>
+<a class="btn btn-danger my-4" href="{{ url("form") }}">Retour</a>
 
-{% for movie in movies %}
-        <h1>Movie: {{movie.title}}</h1>
-        <h2>Release date : {{movie.release_date}}</h2>
-
-        <p>Overview: {{movie.overview}}</p>
-        <a href="{{ url("movie", {id: movie.id}) }}">Voir plus</a>
-
-        <img src="{{poster_url}}{{movie.poster_path}}" alt="" width="50px">
-{% endfor %}
+<div class="row">
+  {% for movie in movies %}
+    <div class="col-3 mb-5">
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{poster_url}}{{movie.poster_path}}" alt="Card image cap">
+                <div class="card-body">
+                        <h5 class="card-title">{{movie.title}}</h5>
+                        <p class="card-text">{{movie.release_date}}</p>
+                        <a href="{{ url("movie", {id: movie.id})}}" class="btn btn-primary">See more</a>
+                </div>
+        </div>
+    </div>       
+  {% endfor %}
+</div>
 
 
 {% endblock %}
