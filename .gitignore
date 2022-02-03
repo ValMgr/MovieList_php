@@ -1,4 +1,5 @@
 .env
+docker-compose.yml
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
