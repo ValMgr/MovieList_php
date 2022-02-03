@@ -1,5 +1,7 @@
 .env
 docker-compose.yml
+composer.lock
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
