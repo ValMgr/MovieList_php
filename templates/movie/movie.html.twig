@@ -14,6 +14,23 @@
           <p class="card-text">{{movie.overview}}</p>
         </div>
     </div>
+    <div class="col-6 p-0">
+      <h2>Actors :</h2>
+      <div class="row">
+        {% for actor in actors  %}
+          <div class="col">
+            <div class="card mx-1 mb-2" style="width: 18rem;">
+              <img class="card-img-top" src="{{poster_url}}{{actor.profile_path}}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{actor.name}}</h5>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+   
 </div>
 
 

@@ -47,9 +47,11 @@ class MovieController extends AbstractController
     {
         $rq = $requestStack->getMainRequest();
         $movie = $client->fetchApi('GET', '/movie/'.$rq->attributes->get('id'));
+        $actors = $client->fetchApi('GET', '/movie/'.$rq->attributes->get('id').'/credits');
         return $this->render('movie/movie.html.twig', [
             'controller_name' => 'MovieController',
             'movie' => $movie,
+            'actors' => $actors['cast'],
             'poster_url' => "https://www.themoviedb.org/t/p/w1280"
         ]);
     }
