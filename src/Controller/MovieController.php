@@ -22,6 +22,16 @@ class MovieController extends AbstractController
     private $SLUG = "/search/movie";
     private $API_KEY = '5ebe0843b2e373ffa159f5683b21b7de';
 
+     /**
+     * @Route("/", name="home")
+     */
+    public function home() : Response
+    {
+        return $this->render('home.html.twig', [
+            'controller_name' => 'MovieController',
+        ]);
+    }
+
     /**
      * @Route("/movie", name="form")
      */
