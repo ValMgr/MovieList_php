@@ -2,16 +2,34 @@
 
 {% block body %}
 
-<a href="/actor">Retour</a>
+<a class="btn btn-danger my-4" href="/actor">Retour</a>
 
-{% for person in actor %}
-        <h1>Actor: {{person.name}}</h1>
-        <h2>Profession: {{person.known_for_department}}</h2>
-
-
-        <img src="{{profil_url}}{{person.profile_path}}" alt="" width="50px">
-{% endfor %}
-
-
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-6">
+      <div class="card" style="width: 36rem;">
+    <img class="card-img-top" src="{{profil_url}}{{actor.profile_path}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{actor.name}}</h5>
+      <p class="card-text">{{actor.known_for_department}}</p>
+      <p class="card-text">{{actor.biography}}</p>
+    </div>
+  </div>
+    </div>
+    <div class="col-6">
+      <h2>Movies :</h2>
+      <div class="d-flex">
+      {% for id in 0..4  %}
+        <div class="card mx-2" style="width: 18rem;">
+          <img class="card-img-top" src="{{profil_url}}{{movies[id].poster_path}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[id].title}}</h5>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+  </div>    
+</div>
 
 {% endblock %}

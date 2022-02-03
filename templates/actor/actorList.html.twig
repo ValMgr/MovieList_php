@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<a class="btn btn-danger my-4" href="/actor">Retour</a>
+
+<div class="row">
+{% for person in actor %}
+<div class="col-3 mb-5">
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{profil_url}}{{person.profile_path}}" alt="Card image cap">
+                <div class="card-body">
+                        <h5 class="card-title">{{person.name}}</h5>
+                        <p class="card-text">{{person.known_for_department}}</p>
+                        <a href="{{ url("one-actor", {id: person.id})}}" class="btn btn-primary">See more</a>
+                </div>
+        </div>
+    </div>
+{% endfor %}
+    
+</div>
+
+{% endblock %}
