@@ -6,7 +6,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TheMovieDbClient{
     private $API_URL = "https://api.themoviedb.org/3";
-    private $SLUG = "/search/movie";
     private $API_KEY = '5ebe0843b2e373ffa159f5683b21b7de';
     private $client;
 
