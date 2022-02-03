@@ -5,7 +5,8 @@
 <a class="btn btn-danger my-4" href="{{ url("form") }}">Retour</a>
 
 <div class="container mb-5">
-    <div class="card" style="width: 36rem;">
+    <div class="card" style="width: 36rem; position: relative;">
+        <button type="button" class="btn btn-outline-light" style="position: absolute; top: 10px; right: 10px;">&#x2661;</button>
         <img class="card-img-top" src="{{poster_url}}{{movie.poster_path}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{movie.title}}</h5>
