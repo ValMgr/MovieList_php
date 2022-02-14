@@ -26,10 +26,9 @@ class MovieController extends AbstractController
     {
 
         $wishlist = $doctrine->getRepository(Movie::class)->findAll();
-
         return $this->render('movie/index.html.twig', [
             'controller_name' => 'MovieController',
-            'wishlsit'  => $wishlist
+            'wishlist'  => $wishlist
         ]);
     }
 
@@ -88,8 +87,32 @@ class MovieController extends AbstractController
         return $this->redirectToRoute('movie', ['id' => $rq->attributes->get('id')]);
     }
 
-     /**
-     * @Route("/movie/dump", name="dumpDb")
+    /**
+     * @Route("/movie/{id}", name="removeToList", methods={"DELETE"})
      */
+    public function removeMovieToWatchList(RequestStack $requestStack, ManagerRegistry $doctrine) : Response
+    {
+        $rq = $requestStack->getMainRequest();
+        $entityManager = $doctrine->getManager();
+
+        $movie = $doctrine->getRepository(Movie::class)->findOneByMovieId($rq->attributes->get('id'));
+        $entityManager->remove($movie);
+        $entityManager->flush();
+        return $this->redirectToRoute('movie', ['id' => $rq->attributes->get('id')]);
+    }   
+
+    /**
+     * @Route("/dump/movies", name="dumpDb")
+     */
+    public function dumpDb(ManagerRegistry $doctrine) : Response
+    {
+        $entityManager = $doctrine->getManager();
+        $movies = $doctrine->getRepository(Movie::class)->findAll();
+        foreach ($movies as $id => $movie) {
+            $entityManager->remove($movie);
+        }
+        $entityManager->flush();
+        return $this->redirectToRoute('form');
+    }
 
 }
