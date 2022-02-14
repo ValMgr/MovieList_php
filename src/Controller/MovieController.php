@@ -26,7 +26,6 @@ class MovieController extends AbstractController
     {
 
         $wishlist = $doctrine->getRepository(Movie::class)->findAll();
-        // dd($wishlist);
 
         return $this->render('movie/index.html.twig', [
             'controller_name' => 'MovieController',
@@ -41,7 +40,6 @@ class MovieController extends AbstractController
     {
         $rq = $requestStack->getMainRequest();
         $movies = $client->fetchApi('GET', '/search/movie', 'query='.$rq->query->get('q'))['results'];
-        // dd($movies);
         return $this->render('movie/movieList.html.twig', [
             'controller_name' => 'MovieController',
             'movies' => $movies,
@@ -52,17 +50,19 @@ class MovieController extends AbstractController
     /**
      * @Route("/movie/{id}", name="movie", methods={"GET"})
      */
-    public function findOneMovie(RequestStack $requestStack, TheMovieDbClient $client): Response
+    public function findOneMovie(RequestStack $requestStack, TheMovieDbClient $client, ManagerRegistry $doctrine): Response
     {
         $rq = $requestStack->getMainRequest();
         $movie = $client->fetchApi('GET', '/movie/'.$rq->attributes->get('id'));
-        // dd($movie);
+        $isSave = $doctrine->getRepository(Movie::class)->findOneByMovieId($rq->attributes->get('id'));
+        $isSave = $isSave === null ? false : true;
 
         $actors = $client->fetchApi('GET', '/movie/'.$rq->attributes->get('id').'/credits');
         return $this->render('movie/movie.html.twig', [
             'controller_name' => 'MovieController',
             'movie' => $movie,
             'actors' => $actors['cast'],
+            'isSave' => $isSave,
             'poster_url' => "https://www.themoviedb.org/t/p/w1280"
         ]);
     }
@@ -85,7 +85,11 @@ class MovieController extends AbstractController
         $entityManager->flush();
 
         // return new Response("Add movie to wishlist");
-        return $this->redirectToRoute($request->attributes->get('_route'));
+        return $this->redirectToRoute('movie', ['id' => $rq->attributes->get('id')]);
     }
+
+     /**
+     * @Route("/movie/dump", name="dumpDb")
+     */
 
 }

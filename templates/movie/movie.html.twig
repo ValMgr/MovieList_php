@@ -11,9 +11,9 @@
 
     <div class="col-6">
       <div class="card" style="width: 36rem; position: relative;">
-          <form action="{{app.request.uri }}" method="{% if true  %}POST{% else %}DELETE{% endif %}">
+          <form action="{{app.request.uri }}" method="{% if isSave  %}DELETE{% else %}POST{% endif %}">
             <input type="text" name="title" value="{{movie.title}}" hidden>
-            <input type="submit" value="&#x2661;" class="btn btn-outline-light {% if false  %}btn-pink{% endif %}" style="position: absolute; top: 10px; right: 10px;">
+            <input type="submit" value="&#x2661;" class="btn btn-outline-light {% if isSave  %}btn-pink{% endif %}" style="position: absolute; top: 10px; right: 10px;">
           </form>
           <img class="card-img-top" src="{{poster_url}}{{movie.poster_path}}" alt="Card image cap">
           <div class="card-body">
