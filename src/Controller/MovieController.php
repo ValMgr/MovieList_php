@@ -71,7 +71,7 @@ class MovieController extends AbstractController
      */
     public function addMovieToWatchList(RequestStack $requestStack, ManagerRegistry $doctrine) : Response
     {
-
+        dd('ici');die;
         $entityManager = $doctrine->getManager();
         $rq = $requestStack->getMainRequest();
 
@@ -83,12 +83,11 @@ class MovieController extends AbstractController
         $entityManager->persist($movie);
         $entityManager->flush();
 
-        // return new Response("Add movie to wishlist");
         return $this->redirectToRoute('movie', ['id' => $rq->attributes->get('id')]);
     }
 
     /**
-     * @Route("/movie/{id}", name="removeToList", methods={"DELETE"})
+     * @Route("/movie/delete/{id}", name="removeToList")
      */
     public function removeMovieToWatchList(RequestStack $requestStack, ManagerRegistry $doctrine) : Response
     {

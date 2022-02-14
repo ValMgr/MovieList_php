@@ -11,7 +11,7 @@
 
     <div class="col-6">
       <div class="card" style="width: 36rem; position: relative;">
-          <form action="{{app.request.uri }}" method="{% if isSave  %}DELETE{% else %}POST{% endif %}">
+          <form action="{% if(isSave) %} {{ url("removeToList", {id: movie.id}) }} {% else %} {{app.request.uri}} {% endif %}" method="POST">
             <input type="text" name="title" value="{{movie.title}}" hidden>
             <input type="submit" value="&#x2661;" class="btn btn-outline-light {% if isSave  %}btn-pink{% endif %}" style="position: absolute; top: 10px; right: 10px;">
           </form>
