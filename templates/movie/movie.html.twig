@@ -11,7 +11,10 @@
 
     <div class="col-6">
       <div class="card" style="width: 36rem; position: relative;">
-          <a href="{{ url("addToList", {id: movie.id})}}" class="btn btn-outline-light" style="position: absolute; top: 10px; right: 10px;">&#x2661;</a>
+          <form action="{{app.request.uri }}" method="{% if true  %}POST{% else %}DELETE{% endif %}">
+            <input type="text" name="title" value="{{movie.title}}" hidden>
+            <input type="submit" value="&#x2661;" class="btn btn-outline-light {% if false  %}btn-pink{% endif %}" style="position: absolute; top: 10px; right: 10px;">
+          </form>
           <img class="card-img-top" src="{{poster_url}}{{movie.poster_path}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{movie.title}}</h5>
@@ -40,7 +43,11 @@
   </div>
 </div>
 
-
+<style>
+  .btn-pink{
+    background-color: rgb(235, 174, 224)
+  }
+</style>
 
 
 {% endblock %}

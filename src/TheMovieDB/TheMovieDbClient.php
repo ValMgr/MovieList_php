@@ -15,7 +15,7 @@ class TheMovieDbClient{
     }
 
 
-    public function fetchApi($method = 'GET', $action, $params = ''){
+    public function fetchApi($method = 'GET', $action = '', $params = ''){
         $response = $this->client->request($method, $this->API_URL . $action . '?api_key=' . $this->API_KEY . '&' . $params);
 
         $statusCode = $response->getStatusCode();
