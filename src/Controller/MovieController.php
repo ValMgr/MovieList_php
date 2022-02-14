@@ -82,7 +82,8 @@ class MovieController extends AbstractController
         $entityManager->persist($movie);
         $entityManager->flush();
 
-        return $this->redirectToRoute('movie', ['id' => $rq->attributes->get('id')]);
+        $referer = $requestStack->getMainRequest()->headers->get('referer');   
+        return $this->redirect($referer);
     }
 
     /**
@@ -96,7 +97,9 @@ class MovieController extends AbstractController
         $movie = $doctrine->getRepository(Movie::class)->findOneByMovieId($rq->attributes->get('id'));
         $entityManager->remove($movie);
         $entityManager->flush();
-        return $this->redirectToRoute('movie', ['id' => $rq->attributes->get('id')]);
+
+        $referer = $requestStack->getMainRequest()->headers->get('referer');   
+        return $this->redirect($referer);
     }   
 
     /**
