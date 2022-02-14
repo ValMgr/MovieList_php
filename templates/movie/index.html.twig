@@ -22,7 +22,21 @@
 
 		<h2>Wish list :</h2>
 
-		
+		<div class="row">
+  {% for movie in wishlist %}
+			<div class="col-3 mb-5">
+					<div class="card" style="width: 18rem;">
+							<div class="card-body">
+									<h5 class="card-title">{{movie.name}}</h5>
+									{# <p class="card-text">Ajouté à la liste le : {{movie.getDate()}}</p> #}
+									<a href="{{ url("movie", {id: movie.movieId})}}" class="btn btn-primary">See film card</a>
+							</div>
+							<hr />
+							<a href="" class="btn btn-warning">Delete Movie</a>
+					</div>
+			</div>       
+  {% endfor %}
+</div>
 
 	</div>
 {% endblock %}
