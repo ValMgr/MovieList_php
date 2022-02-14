@@ -20,7 +20,7 @@
 
 		<hr class="my-5">
 
-	<div class="d-flex justify-content-between mb-4">
+	<div class="d-flex justify-content-between align-items-center mb-4">
 		<h2>Wish list :</h2>
 		<a href="{{ url("dumpDb")}}" class="btn btn-danger">Delete All</a>
 	
@@ -33,9 +33,10 @@
 							<div class="card-body">
 									<h5 class="card-title">{{movie.name}}</h5>
 									{# <p class="card-text">Ajouté à la liste le : {{movie.getDate()}}</p> #}
-									<a href="{{ url("movie", {id: movie.movieId})}}" class="btn btn-primary">See film card</a>
+									
 							</div>
 							<div class="card-footer text-muted">
+									<a href="{{ url("movie", {id: movie.movieId})}}" class="btn btn-primary">See film card</a>
 									<a href="{{ url("removeToList", {id: movie.movieId})}}" class="btn btn-warning">Delete Movie</a>
 							</div>
 					</div>
