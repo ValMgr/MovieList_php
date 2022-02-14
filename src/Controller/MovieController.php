@@ -26,7 +26,6 @@ class MovieController extends AbstractController
     {
 
         $wishlist = $doctrine->getRepository(Movie::class)->findAll();
-        dd($wishlist);
         return $this->render('movie/index.html.twig', [
             'controller_name' => 'MovieController',
             'wishlist'  => $wishlist
@@ -72,7 +71,6 @@ class MovieController extends AbstractController
      */
     public function addMovieToWatchList(RequestStack $requestStack, ManagerRegistry $doctrine) : Response
     {
-        dd('ici');die;
         $entityManager = $doctrine->getManager();
         $rq = $requestStack->getMainRequest();
 
