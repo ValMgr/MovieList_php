@@ -12,7 +12,11 @@
                 <img class="card-img-top" src="{{poster_url}}{{movie.poster_path}}" alt="Card image cap">
                 <div class="card-body">
                         <h5 class="card-title">{{movie.title}}</h5>
-                        <p class="card-text">{{movie.release_date}}</p>
+                        {% if movie.release_date is defined %}
+                          <p class="card-text">{{movie.release_date}}</p>
+                        {% else %}
+                          <p>No released date</p>
+                        {% endif %}
                         <a href="{{ url("movie", {id: movie.id})}}" class="btn btn-primary">See more</a>
                 </div>
         </div>

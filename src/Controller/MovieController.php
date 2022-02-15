@@ -116,4 +116,15 @@ class MovieController extends AbstractController
         return $this->redirectToRoute('form');
     }
 
+    #[Route('/wishlist', name: 'wishlist')]
+    public function wishlist(ManagerRegistry $doctrine): Response
+    {
+
+        $wishlist = $doctrine->getRepository(Movie::class)->findAll();
+        // dd($wishlist);
+        return $this->render('movie/wishlist.html.twig', [
+            'controller_name' => 'MovieController',
+            'wishlist'  => $wishlist
+        ]);
+    }
 }

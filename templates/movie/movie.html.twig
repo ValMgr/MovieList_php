@@ -11,10 +11,12 @@
 
     <div class="col-6">
       <div class="card" style="width: 36rem; position: relative;">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           <form action="{% if(isSave) %} {{ url("removeToList", {id: movie.id}) }} {% else %} {{app.request.uri}} {% endif %}" method="POST">
             <input type="text" name="title" value="{{movie.title}}" hidden>
             <input type="submit" value="&#x2661;" class="btn btn-outline-light {% if isSave  %}btn-pink{% endif %}" style="position: absolute; top: 10px; right: 10px;">
           </form>
+        {% endif %}
           <img class="card-img-top" src="{{poster_url}}{{movie.poster_path}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{movie.title}}</h5>
